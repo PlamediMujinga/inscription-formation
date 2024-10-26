@@ -88,7 +88,7 @@
 
   // Initialize Firebase
   const app=initializeApp(firebaseConfig);
-  const db = firebase.firestore()
+  const db = getFirestore(app)
   
 
         // Gérer la soumission du formulaire
