@@ -89,7 +89,7 @@
   // Initialize Firebase
   const app=initializeApp(firebaseConfig);
   const db = getFirestore(app)
-  
+  const myCollectionRef = collection(db, 'inscriptions')
 
         // Gérer la soumission du formulaire
         document.getElementById('registrationForm').addEventListener('submit', function(event) {
@@ -100,22 +100,23 @@
     const email = document.getElementById('email').value;
 
     // Ajouter les données à Firestore
-    db.collection('inscriptions').add({
+    
+    try {
+    const docRef = await addDoc(myCollectionRef, {
         firstName: firstName,
         lastName: lastName,
         phone: phone,
         email: email
-    })
-    .then(() => {
-        // Afficher le message de succès
-        document.getElementById('message').innerText = 'Enregistrement réussi !';
-        document.getElementById('registrationForm').reset(); // Réinitialiser le formulaire
-    })
-    .catch((error) => {
-        console.error('Erreur lors de l\'enregistrement : ', error);
-        document.getElementById('message').innerText = 'Erreur lors de l\'enregistrement. Veuillez réessayer.';
-        document.getElementById('message').style.color = 'red'; // Changer la couleur du message d'erreur
     });
+    console.log("Document ajouté avec ID :", docRef.id);
+    // Afficher le message de succès
+    document.getElementById('message').innerText = 'Enregistrement réussi !';
+    document.getElementById('registrationForm').reset(); // Réinitialiser le formulaire
+  } catch (error) {
+    console.error('Erreur lors de l\'enregistrement : ', error);
+    document.getElementById('message').innerText = 'Erreur lors de l\'enregistrement. Veuillez réessayer.';
+    document.getElementById('message').style.color = 'red'; // Changer la couleur du message d'erreur
+  }
 });
     </script>
 </body>
