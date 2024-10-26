@@ -92,7 +92,7 @@
   const myCollectionRef = collection(db, 'inscriptions')
 
         // Gérer la soumission du formulaire
-        document.getElementById('registrationForm').addEventListener('submit', function(event) {
+        document.getElementById('registrationForm').addEventListener('submit', async(event)  => {
     event.preventDefault();
     const firstName = document.getElementById('firstName').value;
     const lastName = document.getElementById('lastName').value;
