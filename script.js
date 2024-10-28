@@ -34,13 +34,7 @@
     const phone = document.getElementById('phone').value;
     const email = document.getElementById('email').value;
 
-    // Envoyer l'email
-        emailjs.send("service_nie66p2", "template_valtfrl", {
-            firstName: firstName,
-            lastName: lastName,
-            email: email,
-            message: `Bienvenue ${firstName} ${lastName}, merci de vous être inscrit !`
-        })
+    
     // Ajouter les données à Firestore
     
     try {
@@ -49,7 +43,14 @@
         lastName: lastName,
         phone: phone,
         email: email
-        
+
+        // Envoyer l'email
+        emailjs.send("service_nie66p2", "template_valtfrl", {
+            firstName: firstName,
+            lastName: lastName,
+            email: email,
+            message: `Bienvenue ${firstName} ${lastName}, merci de vous être inscrit !`
+        })
     });
     console.log("Document ajouté avec ID :", docRef.id);
     // Afficher le message de succès
