@@ -101,40 +101,41 @@
         emailjs.init("service_nie66p2"); // Remplacez par votre User ID
     })();
         // Gérer la soumission du formulaire
-        document.getElementById('registrationForm').addEventListener('submit', async(event)  => {
+        // Gérer la soumission du formulaire
+document.getElementById('registrationForm').addEventListener('submit', async (event) => {
     event.preventDefault();
     const firstName = document.getElementById('firstName').value;
     const lastName = document.getElementById('lastName').value;
     const phone = document.getElementById('phone').value;
     const email = document.getElementById('email').value;
 
-    
     // Ajouter les données à Firestore
-    
     try {
-    const docRef = await addDoc(myCollectionRef, {
-        firstName: firstName,
-        lastName: lastName,
-        phone: phone,
-        email: email
+        const docRef = await addDoc(myCollectionRef, {
+            firstName: firstName,
+            lastName: lastName,
+            phone: phone,
+            email: email
+        });
 
-        // Envoyer l'email
-        emailjs.send("service_nie66p2", "template_valtfrl", {
+        console.log("Document ajouté avec ID :", docRef.id);
+
+        // Envoyer l'email après avoir ajouté le document
+        await emailjs.send("service_nie66p2", "template_valtfrl", {
             firstName: firstName,
             lastName: lastName,
             email: email,
             message: `Bienvenue ${firstName} ${lastName}, merci de vous être inscrit !`
-        })
-    });
-    console.log("Document ajouté avec ID :", docRef.id);
-    // Afficher le message de succès
-    document.getElementById('message').innerText = 'Enregistrement réussi ! Un mail de confirmation a été envoyé.';
-    document.getElementById('registrationForm').reset(); // Réinitialiser le formulaire
-  } catch (error) {
-    console.error('Erreur lors de l\'enregistrement : ', error);
-    document.getElementById('message').innerText = 'Erreur lors de l\'enregistrement. Veuillez réessayer.';
-    document.getElementById('message').style.color = 'red'; // Changer la couleur du message d'erreur
-  }
+        });
+
+        // Afficher le message de succès
+        document.getElementById('message').innerText = 'Enregistrement réussi ! Un mail de confirmation a été envoyé.';
+        document.getElementById('registrationForm').reset(); // Réinitialiser le formulaire
+    } catch (error) {
+        console.error('Erreur lors de l\'enregistrement : ', error);
+        document.getElementById('message').innerText = 'Erreur lors de l\'enregistrement. Veuillez réessayer.';
+        document.getElementById('message').style.color = 'red'; // Changer la couleur du message d'erreur
+    }
 });
 
   </script>   
