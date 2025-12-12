@@ -10,10 +10,17 @@
     <style>
         body {
             font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            
+        }
+        .parent {
+            display: flex;
+            justify-content:center;
+            aign-items:center;
+            font-family: Arial, sans-serif;
             background-color: #fefefe;
             padding: 20px;
             max-width: 600px;
-            margin-top: 100px;
             
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -53,24 +60,26 @@
     </style>
 </head>
 <body>
-    <h1>Formation IA</h1>
-    <h2>Formulaire d'Inscription</h2>
-    <div id="message" style="color: green; margin-top: 20px;"></div>
-    <form id="registrationForm">
-        <label for="firstName">Prénom :</label>
-        <input type="text" id="firstName" name="firstName" required>
+    <div class="parent">
+        <h1>Formation IA</h1>
+        <h2>Formulaire d'Inscription</h2>
+        <div id="message" style="color: green; margin-top: 20px;"></div>
+        <form id="registrationForm">
+            <label for="firstName">Prénom :</label>
+            <input type="text" id="firstName" name="firstName" required>
 
-        <label for="lastName">Nom :</label>
-        <input type="text" id="lastName" name="lastName" required>
+            <label for="lastName">Nom :</label>
+            <input type="text" id="lastName" name="lastName" required>
 
-        <label for="phone">Numéro de téléphone :</label>
-        <input type="tel" id="phone" name="phone" required>
+            <label for="phone">Numéro de téléphone :</label>
+            <input type="tel" id="phone" name="phone" required>
 
-        <label for="email">Adresse e-mail :</label>
-        <input type="email" id="email" name="email" required>
+            <label for="email">Adresse e-mail :</label>
+            <input type="email" id="email" name="email" required>
 
-        <input type="submit" value="S'inscrire">
-    </form>
+            <input type="submit" value="S'inscrire">
+        </form>
+    </div>
 
   <script  type="module">
       // Import the functions you need from the SDKs you need
@@ -141,6 +150,7 @@ document.getElementById('registrationForm').addEventListener('submit', async (ev
   </script>   
 </body>
 </html>
+
 
 
 
